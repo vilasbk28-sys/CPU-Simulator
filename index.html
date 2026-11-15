@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive CPU Simulator | COA Mini Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Interactive CPU Simulator</h1>
+      <p>Computer Organization and Architecture Mini Project</p>
+    </div>
+    <div class="status"><span class="dot"></span> CPU Ready</div>
+  </header>
+
+  <main>
+    <section class="card program-card">
+      <div class="section-title">
+        <div>
+          <h2>Instruction Program</h2>
+          <p>Enter one instruction per line.</p>
+        </div>
+        <div class="buttons">
+          <button id="loadExample" class="secondary">Load Example</button>
+          <button id="runBtn">Run All</button>
+          <button id="stepBtn">Step</button>
+          <button id="resetBtn" class="danger">Reset</button>
+        </div>
+      </div>
+
+      <textarea id="programInput" spellcheck="false">LOAD R1, 10
+LOAD R2, 5
+ADD R1, R2
+STORE R1, 20
+SUB R1, 2
+AND R1, R2
+OR R1, R2
+XOR R1, R2</textarea>
+
+      <div class="help">
+        <strong>Supported instructions:</strong>
+        LOAD R1, 10 &nbsp;|&nbsp; STORE R1, 20 &nbsp;|&nbsp; ADD R1, R2 &nbsp;|&nbsp;
+        SUB R1, 5 &nbsp;|&nbsp; AND R1, R2 &nbsp;|&nbsp; OR R1, R2 &nbsp;|&nbsp; XOR R1, R2
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <div class="card">
+        <h2>CPU Registers</h2>
+        <div class="register-grid" id="registers"></div>
+      </div>
+
+      <div class="card">
+        <h2>Current Instruction Cycle</h2>
+        <div class="instruction-box">
+          <div class="current-label">CURRENT INSTRUCTION</div>
+          <div id="currentInstruction">No instruction loaded</div>
+        </div>
+        <div class="stages" id="stages">
+          <div class="stage">1<span>Fetch</span></div>
+          <div class="arrow">→</div>
+          <div class="stage">2<span>Decode</span></div>
+          <div class="arrow">→</div>
+          <div class="stage">3<span>Execute</span></div>
+          <div class="arrow">→</div>
+          <div class="stage">4<span>Memory</span></div>
+          <div class="arrow">→</div>
+          <div class="stage">5<span>Write Back</span></div>
+        </div>
+        <div class="cycle-message" id="cycleMessage">Click Step to begin execution.</div>
+      </div>
+    </section>
+
+    <section class="card datapath">
+      <h2>CPU Datapath Visualization</h2>
+      <div class="datapath-flow">
+        <div class="data-unit" id="memoryUnit">Memory</div>
+        <div class="flow-arrow">→</div>
+        <div class="data-unit" id="controlUnit">Control Unit</div>
+        <div class="flow-arrow">→</div>
+        <div class="data-unit" id="aluUnit">ALU</div>
+        <div class="flow-arrow">→</div>
+        <div class="data-unit" id="registerUnit">Registers</div>
+      </div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="card">
+        <h2>Memory</h2>
+        <table>
+          <thead><tr><th>Address</th><th>Instruction / Data</th></tr></thead>
+          <tbody id="memoryTable"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>Execution Log</h2>
+        <div class="log" id="log"></div>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h2>About This Simulator</h2>
+      <p>This educational simulator demonstrates the basic operation of a Central Processing Unit (CPU). It models registers, memory, an Arithmetic Logic Unit (ALU), a Control Unit, and the Fetch–Decode–Execute instruction cycle.</p>
+    </section>
+  </main>
+
+  <footer>COA Mini Project • Interactive CPU Simulator</footer>
+  <script src="script.js"></script>
+</body>
+</html>
